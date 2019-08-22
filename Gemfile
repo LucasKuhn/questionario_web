@@ -1,0 +1,7 @@
+gem "rack"
+gem "byebug"
+gem "sequel"
+gem "rack-console"
+gem "pg"
+gem "warden"
+gem "rack-flash3"

@@ -1,0 +1,36 @@
+<% candidato = CandidatosController.candidato %>
+<h1><%= candidato.nome %></h1>
+<h1><%= candidato.inscricao %></h1>
+
+<table class="table">
+  <tbody>
+    <tr>
+    <th>nome</th>
+    <td><%= candidato.nome %></td>
+    </tr>
+    <tr>
+    <th>endereco</th>
+    <td><%= candidato.endereco %></td>
+    </tr>
+    <tr>
+    <th>cidade</th>
+    <td><%= candidato.cidade %></td>
+    </tr>
+    <tr>
+    <th>usuario</th>
+    <td><%= candidato.usuario %></td>
+    </tr>
+    <tr>
+    <th>senha</th>
+    <td><%= candidato.senha %></td>
+    </tr>
+    <tr>
+    <th>nascimento</th>
+    <td><%= candidato.nascimento %></td>
+    </tr>
+    <tr>
+    <th>inscricao</th>
+    <td><%= candidato.inscricao %></td>
+    </tr>
+  </tbody>
+</table>

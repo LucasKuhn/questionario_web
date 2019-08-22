@@ -1,0 +1,29 @@
+<style>
+  .table thead th {
+    border: 0;
+  }
+</style>
+
+<div class="d-flex justify-content-between">
+    <div class="p-2"><h3> Questoes </h3></div>
+    <div class="p-1">
+      <div class="p-2"><a class="btn btn btn-sm btn-outline-success" href="/questoes/new" role="button">Nova Questão</a></div>
+    </div>
+</div>
+<hr class="mt-0">
+
+
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% QuestoesController.questoes.each do |questao| %>
+    <tr>
+      <td><%= questao.texto %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

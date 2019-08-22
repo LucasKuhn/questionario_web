@@ -1,0 +1,72 @@
+<% teste = QuestoesController.teste %>
+<h3 class="my-4">Nova Questão</h3>
+<form action="/testes/<%= teste.id %>/questoes" method="post" enctype="multipart/form-data">
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Texto</label>
+        <input type="text" class="form-control" name="texto" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Ilustração</label>
+        <input type="file" class="form-control-file" name="image_file" required>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="my-4">Alternativas</h4>
+
+  <div id="alternativas">
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Texto</label>
+          <input type="text" class="form-control" name="alternativas_attributes[]texto" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Correta?</label>
+          <input type="checkbox" name="alternativas_attributes[]correta" class="form-control">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <a href="#" onclick="myFunction()">Adicionar alternativa</a>
+
+  <br>
+  <button type="submit" class="btn btn-primary">Criar</button>
+</form>
+
+
+<script>
+  function myFunction() {
+    var new_row = document.createElement('div');
+    inner_html = `
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Texto</label>
+          <input type="text" class="form-control" name="alternativas_attributes[]texto" required>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Correta?</label>
+          <input type="checkbox" name="alternativas_attributes[]correta" class="form-control">
+        </div>
+      </div>
+    </div>
+    `
+    new_row.innerHTML = inner_html;
+
+    document.getElementById("alternativas").append(new_row)
+  }
+</script>

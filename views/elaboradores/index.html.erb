@@ -1,0 +1,19 @@
+<div class="d-flex flex-row-reverse mx-4">
+  <a class="btn btn-outline-success" href="/elaboradores/new" role="button">Novo Elaborador</a>
+</div>
+
+<!-- <nav class="navbar navbar-light bg-light ">
+<div class="flex-nowrap">
+</div>
+<button class="btn btn-outline-success " type="button">Novo Elaborador</button>
+</nav> -->
+
+<table class="table">
+  <tbody>
+    <% ElaboradoresController.elaboradores.each do |elaborador| %>
+    <tr>
+      <td><%= elaborador.nome %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

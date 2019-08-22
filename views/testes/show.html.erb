@@ -1,0 +1,27 @@
+<% teste = TestesController.teste %>
+<h2>Teste <%= teste.nome %></h2>
+<h4 class="font-weight-light">Duração mínima: <%= teste.duracao %> min</h4>
+<h4 class="font-weight-light">Percentual aprovação <%= teste.percentual_aprovacao %>%</h4>
+<hr class="mt-0">
+
+<div style="min-height:150px">
+  <p>
+    <strong>Descrição:</strong><br>
+    <%= teste.descricao %>
+  </p>
+</div>
+
+
+<h4 class="mt-4">Questões</h4>
+<hr class="mt-0">
+
+<table class="table table-hover table-borderless">
+  <% teste.questoes.each do |questao| %>
+  <tr>
+    <td><%= questao.texto %></td>
+    <td>Edit | Delete</td>
+  </tr>
+  <% end %>
+</table>
+
+<a href="/testes/<%= teste.id %>/questoes/new" class="link">+ Adicionar questão</a>

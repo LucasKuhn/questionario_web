@@ -1,0 +1,41 @@
+<% elaborador = ElaboradoresController.elaborador %>
+<h2>Elaborador <%= elaborador.nome %></h2>
+<h4>Area <%= elaborador.area %> | Titulação <%= elaborador.titulacao %></h4>
+
+<table class="table my-4">
+  <tbody>
+    <tr>
+      <th>area</th>
+      <td><%= elaborador.area %></td>
+    </tr>
+    <tr>
+      <th>titulacao</th>
+      <td><%= elaborador.titulacao %></td>
+    </tr>
+    <tr>
+    <th>nome</th>
+    <td><%= elaborador.nome %></td>
+    </tr>
+    <tr>
+    <th>endereco</th>
+    <td><%= elaborador.endereco %></td>
+    </tr>
+    <tr>
+    <th>cidade</th>
+    <td><%= elaborador.cidade %></td>
+    </tr>
+    <tr>
+    <th>usuario</th>
+    <td><%= elaborador.usuario %></td>
+    </tr>
+    <tr>
+    <th>senha</th>
+    <td><%= elaborador.senha %></td>
+    </tr>
+    <tr>
+    <th>nascimento</th>
+    <td><%= elaborador.nascimento %></td>
+    </tr>
+    <tr>
+  </tbody>
+</table>
