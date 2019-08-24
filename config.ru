@@ -6,7 +6,7 @@ require 'rack-flash'
 # Load DB
 db_config_file = File.join(File.dirname(__FILE__), 'config', 'database.yml')
 if File.exist?(db_config_file)
-  config = YAML.load(File.read(db_config_file))
+  config = YAML.load(ERB.new(File.read(db_config_file)).result)
   DB = Sequel.connect(config)
   Sequel.extension :migration
 end
