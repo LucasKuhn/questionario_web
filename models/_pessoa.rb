@@ -3,4 +3,8 @@ class Pessoa < Sequel::Model
   def classificacao
     kind
   end
+
+  def idade
+    Date.today.year - nascimento.year
+  end
 end

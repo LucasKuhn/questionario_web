@@ -1,7 +1,9 @@
 class AplicacaoTeste < Sequel::Model(:aplicacao_testes)
-  many_to_one :candidato
+  many_to_one :pessoa, key: :candidato_id
   many_to_one :teste
   one_to_many :respostas, key: :aplicacao_teste_id
+  plugin :nested_attributes
+  nested_attributes :respostas
 
   def questoes_faltantes
     respondidas = []
@@ -11,6 +13,14 @@ class AplicacaoTeste < Sequel::Model(:aplicacao_testes)
 
   def respostas_enviadas
     respostas.size + 1
+  end
+
+  def situacao
+    if percentual_acerto >= teste.percentual_aprovacao
+      'Aprovado ✅'
+    else
+      'Reprovado ❌'
+    end
   end
 
   def total_perguntas
@@ -29,10 +39,10 @@ class AplicacaoTeste < Sequel::Model(:aplicacao_testes)
     questoes_faltantes.sample
   end
 
-  def time_remaining
+  def seconds_remaining
     limit = hora_inicio + (teste.duracao * 60)
-    result = ( limit - Time.now ) / 60
-    result > 0 ? "#{result.to_i}:#{((result %1)*60).to_i}" : "0"
+    result = ( limit - Time.now ).to_i
+    result > 0 ? result : 0
   end
 
   def finalizar!
@@ -41,4 +51,9 @@ class AplicacaoTeste < Sequel::Model(:aplicacao_testes)
     percentual_acerto = (corretas.to_f / total_perguntas) * 100
     self.update(hora_fim:DateTime.now,percentual_acerto:percentual_acerto)
   end
+
+  def prepararar_imagens
+    teste.questoes.each {|questao| questao.prepare_image!}
+  end
+
 end

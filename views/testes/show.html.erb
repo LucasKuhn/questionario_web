@@ -1,6 +1,6 @@
 <% teste = TestesController.teste %>
 <h2>Teste <%= teste.nome %></h2>
-<h4 class="font-weight-light">Duração mínima: <%= teste.duracao %> min</h4>
+<h4 class="font-weight-light">Duração: <%= teste.duracao %> min</h4>
 <h4 class="font-weight-light">Percentual aprovação <%= teste.percentual_aprovacao %>%</h4>
 <hr class="mt-0">
 
@@ -18,10 +18,19 @@
 <table class="table table-hover table-borderless">
   <% teste.questoes.each do |questao| %>
   <tr>
-    <td><%= questao.texto %></td>
-    <td>Edit | Delete</td>
+    <td><a href="/questoes/<%= questao.id %>"><%= questao.texto %></a></td>
+    <td><a data-href="/questoes/<%= questao.id %>" onclick="deleteMethod(this);">Delete</a></td>
   </tr>
   <% end %>
 </table>
 
 <a href="/testes/<%= teste.id %>/questoes/new" class="link">+ Adicionar questão</a>
+
+<script type="text/javascript">
+    async function deleteMethod(identifier){
+        if ( confirm("Tem certeza?") ) {
+          await fetch($(identifier).data('href'), {method: 'DELETE'});
+          window.location.reload();
+        }
+    }
+</script>

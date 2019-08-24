@@ -1,3 +1,12 @@
+.table-border-bottom th, td {
+  border-top:none !important;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-headless thead tr th {
+  border-top: 0 !important;
+}
+
 body {
   overflow-x: hidden;
   font-family: Helvetica Neue;
@@ -62,24 +71,46 @@ body {
   left: -1px;
   -webkit-transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
-  width: 100px;
+  width: 80px;
+  height: 100%;
   color: white;
 }
 
 #menu-toggle:hover {
-  width: 80px;
+  width: 60px;
 }
 
 #wrapper.toggled #menu-toggle {
-  width: 80px;
+  width: 60px;
 }
 
 #wrapper.toggled #menu-toggle:hover {
-  width: 100px;
+  width: 80px;
 }
 
 #wrapper.toggled #menu-toggle span{
   display: block;
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
+}
+
+.questao-container {
+  min-height: 95vh;
+}
+
+.next-button {
+  right: 40px;
+  bottom: 30px;
+  z-index: 2;
+}
+
+.bottom-bar {
+  bottom: 40px;
+  right:  40px;
+  position: fixed;
+  width: 300px;
+}
+
+.questao-imagem {
+  max-height: 30vh;
 }

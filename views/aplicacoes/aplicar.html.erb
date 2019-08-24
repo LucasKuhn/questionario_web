@@ -1,46 +1,125 @@
 <% aplicacao = AplicacoesController.aplicacao %>
-<% questao = aplicacao.get_question %>
 
-<h3> Questão <%= aplicacao.respostas_enviadas %> de <%= aplicacao.total_perguntas %> </h3>
+<form method="post" action="/aplicacoes/<%= aplicacao.id %>/finalizar" class="inline">
 
-<div class="row">
-  <div class="col-md-6">
-    <h4 class="font-weight-light"><%= questao.texto %></h4>
-  </div>
-  <div class="col-md-3 text-center">
-    <img src="/img/<%= questao.nome_ilustracao %>" class="img-fluid"><br>
-  </div>
-  <div class="col-md-3 d-flex flex-column justify-content-center">
-  </div>
-</div>
+<% aplicacao.teste.questoes.shuffle.each_with_index do |questao,index| %>
+<a class="anchor" name="questao_<%= index + 1 %>"></a>
+<br>
+<div class="questao-container">
 
-<hr>
+  <h3> Questão <%= index + 1 %> de <%= aplicacao.total_perguntas %> </h3>
 
-<form method="post" action="/aplicacoes/<%= aplicacao.id %>/respostas" class="inline">
-
-<div class="list-group">
-<% questao.alternativas.shuffle.each do |alternativa| %>
-<label class="form-check-label" for="<%= alternativa.id %>">
-  <div class="list-group-item list-group-item-action">
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="alternativa_id" id="<%= alternativa.id %>" value="<%= alternativa.id %>">
-      <%= alternativa.texto %>
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="font-weight-light"><%= questao.texto %></h4>
+    </div>
+    <div class="col-md-6 text-left">
+      <% if questao.nome_ilustracao %>
+        <img src="/temp/<%= questao.nome_ilustracao %>" class="img-fluid questao-imagem"><br>
+      <% end %>
     </div>
   </div>
-</label>
-<% end %>
-</div>
 
-<div class="d-flex justify-content-between my-4">
-  <p>
-    Você ainda tem <%= aplicacao.time_remaining %> minutos
-  </p>
-  <ul class="pagination">
-    <!-- <li class="page-item"><a class="page-link" href="#">Previous</a></li> -->
-    <li class="page-item">
-      <input type="submit" class="btn btn-primary" value="Next &raquo;">
-    </li>
-  </ul>
+  <hr>
+
+
+  <div class="list-group">
+    <% questao.alternativas.shuffle.each do |alternativa| %>
+    <label class="form-check-label" for="<%= questao.id %>_<%= alternativa.id %>">
+      <div class="list-group-item list-group-item-action">
+        <div class="form-check">
+          <input class="form-check-input"
+          type="radio"
+          name="<%= questao.id %>_alternativa_id"
+          id="<%= questao.id %>_<%= alternativa.id %>"
+          value="<%= alternativa.id %>">
+          <%= alternativa.texto %>
+        </div>
+      </div>
+    </label>
+    <% end %>
+  </div>
+
+
 </div>
+<% end %>
+
+  <div class="bottom-bar text-center">
+    <div class="row">
+      <div class="col-12">
+        Tempo restante:<br><span id="time"></span>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-6">
+        <input type="submit" class="btn btn-primary w-100" value="Enviar">
+      </div>
+      <div class="col-6">
+        <button type="button" class="btn btn-outline-primary w-100" onclick="goToNextAnchor()">Próxima &raquo;</button>
+      </div>
+    </div>
+  </div>
 
 </form>
+
+
+<script>
+function goToNextAnchor() {
+  var anchors = document.anchors;
+  var loc = window.location.href.replace(/#.*/,'');
+  var nextAnchorName;
+
+  // Get name of the current anchor from the hash
+  // if there is one
+  var anchorName = window.location.hash.replace(/#/,'');
+
+  // If there is an anchor name...
+  if (anchorName) {
+
+    // Find current element in anchor list, then
+    // get next anchor name, or if at last anchor, set to first
+    for (var i=0, iLen=anchors.length; i<iLen; i++) {
+      if (anchors[i].name == anchorName) {
+        nextAnchorName = anchors[++i % iLen].name;
+        break;
+      }
+    }
+  }
+
+  // If there was no anchorName or no match,
+  // set nextAnchorName to first anchor name
+  if (!nextAnchorName) {
+    nextAnchorName = anchors[0].name;
+  }
+
+  // Go to new URL
+  // window.location.href = loc + '#' + nextAnchorName;
+  path = window.location.pathname
+  window.history.pushState("", "", `${path}#${nextAnchorName}`);
+  document.querySelector(`a[name="${nextAnchorName}"]`).scrollIntoView({
+    behavior: 'smooth'
+  });
+}
+
+
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10)
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            document.forms[0].submit();
+        }
+    }, 1000);
+}
+
+var fiveMinutes = <%= aplicacao.seconds_remaining %>,
+display = document.querySelector('#time');
+startTimer(fiveMinutes, display);
+</script>

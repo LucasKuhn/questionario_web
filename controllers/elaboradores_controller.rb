@@ -6,6 +6,17 @@ class ElaboradoresController < BaseController
       render("elaboradores/new.html.erb")
     end
 
+    def create(params)
+      elaborador = Elaborador.new(params)
+      if elaborador.valid?
+        elaborador.save
+        return [ 302, {'Location' =>"/elaboradores/#{elaborador.id}"}, [] ]
+      else
+        env['x-rack.flash'].error = elaborador.errors.full_messages
+        return [ 302, {'Location' =>"/elaboradores/new"}, [] ]
+      end
+    end
+
     def index
       Rack::Response.new(render("elaboradores/index.html.erb"))
     end

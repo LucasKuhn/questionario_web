@@ -18,6 +18,36 @@ class QuestoesController < BaseController
       render("questoes/show.html.erb")
     end
 
+    def create(params,teste_id)
+      if params["image_file"]
+        filename = params["image_file"][:filename]
+        file = params["image_file"][:tempfile].read
+      else
+        filename = nil
+        file = nil
+      end
+      questao = Questao.new(
+        texto: params["texto"],
+        nome_ilustracao: filename,
+        ilustracao: file,
+        alternativas_attributes: params["alternativas_attributes"],
+        teste_id: teste_id
+      )
+      if questao.valid?
+        questao.save
+        return [ 302, {'Location' =>"/testes/#{teste_id}"}, [] ]
+      else
+        FlashMessages.add(questao.errors.full_messages)
+        return [ 302, {'Location'=>"/testes/#{teste_id}/questoes/new"}, [] ]
+      end
+    end
+
+    def delete(id)
+      questao = Questao.find(id:id)
+      questao.destroy
+      return [ 302, {'Location' =>"/testes/#{questao.teste.id}"}, [] ]
+    end
+
     def questoes
       Questao.all
     end

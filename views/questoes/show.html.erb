@@ -1,5 +1,6 @@
 <% questao = QuestoesController.questao %>
-<h2>Questao #<%= questao.id %></h2>
+<a href="/testes/<%= questao.teste.id %>">&laquo; voltar para o teste</a>
+<h2>Questao #<%= questao.id %> </h2>
 <h4 class="font-weight-light"><%= questao.alternativas.count %> alternativas </h4>
 <hr class="mt-0">
 
@@ -11,8 +12,9 @@
     </p>
   </div>
   <div class="col-md-3 text-center">
-    <img src="/img/<%= questao.nome_ilustracao %>" class="img-fluid"><br>
-    <button type="button" name="button" class="btn btn-outline-secondary mt-1">Alterar imagem</button>
+    <% if questao.nome_ilustracao %>
+    <img src="/temp/<%= questao.nome_ilustracao %>" class="img-fluid"><br>
+    <% end %>
   </div>
   <div class="col-md-3 d-flex flex-column justify-content-center">
   </div>
@@ -23,7 +25,7 @@
 <ul>
 <% questao.alternativas.each do |alternativa| %>
 <li>
-  <%= alternativa.texto %> | <%= alternativa.correta %>
+  <%= alternativa.texto %> <%= "✅" if alternativa.correta %>
 </li>
 <% end %>
 </ul>

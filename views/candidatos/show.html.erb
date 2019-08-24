@@ -1,36 +1,29 @@
 <% candidato = CandidatosController.candidato %>
-<h1><%= candidato.nome %></h1>
-<h1><%= candidato.inscricao %></h1>
+<h2>Candidato <%= candidato.nome %></h2>
+<h4 class="font-weight-light">Inscrição: <%= candidato.inscricao %></h4>
+<hr class="mt-0">
 
-<table class="table">
+<table class="table table-hover table-border-bottom mt-4">
   <tbody>
     <tr>
-    <th>nome</th>
+    <th>Nome</th>
     <td><%= candidato.nome %></td>
     </tr>
     <tr>
-    <th>endereco</th>
-    <td><%= candidato.endereco %></td>
-    </tr>
-    <tr>
-    <th>cidade</th>
-    <td><%= candidato.cidade %></td>
-    </tr>
-    <tr>
-    <th>usuario</th>
+    <th>Usuario</th>
     <td><%= candidato.usuario %></td>
     </tr>
     <tr>
-    <th>senha</th>
-    <td><%= candidato.senha %></td>
+    <th>Endereco</th>
+    <td><%= candidato.endereco %></td>
     </tr>
     <tr>
-    <th>nascimento</th>
-    <td><%= candidato.nascimento %></td>
+    <th>Cidade</th>
+    <td><%= candidato.cidade %></td>
     </tr>
     <tr>
-    <th>inscricao</th>
-    <td><%= candidato.inscricao %></td>
+    <th>Nascimento</th>
+    <td><%= candidato.nascimento %> ( <%= candidato.idade%> anos )</td>
     </tr>
   </tbody>
 </table>

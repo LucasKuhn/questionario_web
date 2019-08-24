@@ -1,6 +1,10 @@
 <% aplicacao = AplicacoesController.aplicacao %>
 <h2>Aplicacao #<%= aplicacao.id %></h2>
-<h4 class="font-weight-light"><%= aplicacao.percentual_acerto %> de acerto </h4>
+<h4 class="font-weight-light">
+  Candidato: <%= aplicacao.pessoa.nome %><br>
+  Acertos: <%= aplicacao.percentual_acerto %> %<br>
+  Situação: <%= aplicacao.situacao %>
+</h4>
 <hr class="mt-0">
 
 <div class="row my-4">
@@ -11,11 +15,11 @@
     </p>
     <p>
       <strong>Inicio:</strong><br>
-      <%= aplicacao.hora_inicio %>
+      <%= aplicacao.hora_inicio.strftime("%d/%m/%Y %H:%M %Ss" ) %>
     </p>
     <p>
       <strong>Fim:</strong><br>
-      <%= aplicacao.hora_inicio %>
+      <%= aplicacao.hora_fim.strftime("%d/%m/%Y %H:%M %Ss" ) %>
     </p>
   </div>
 </div>

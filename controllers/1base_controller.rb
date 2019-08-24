@@ -17,6 +17,10 @@ class BaseController
       <link href="/css/bootstrap.min.css" rel="stylesheet">
       <link href="/css/sidebar.css" rel="stylesheet">
 
+      <!-- Bootstrap -->
+      <script src="/js/jquery.min.js" charset="utf-8"></script>
+      <script src="/js/bootstrap.bundle.min.js" charset="utf-8"></script>
+
       </head>
 
       <body>
@@ -26,19 +30,13 @@ class BaseController
       <!-- Sidebar -->
       <div class="bg-light border-right" id="sidebar-wrapper">
       <a href="/" class="text-info"><div class="sidebar-heading"><strong>Questionário Web</strong></div></a>
-      <div class="list-group list-group-flush">
-      <a href="/elaboradores" class="list-group-item list-group-item-action bg-light">Elaboradores</a>
-      <a href="/candidatos" class="list-group-item list-group-item-action bg-light">Candidatos</a>
-      <a href="/testes" class="list-group-item list-group-item-action bg-light">Testes</a>
-      <a href="/questoes" class="list-group-item list-group-item-action bg-light">Questoes</a>
-      <a href="/aplicacoes" class="list-group-item list-group-item-action bg-light">Aplicações</a>
-      </div>
+      #{sidebar_links(Current.user)}
       </div>
 
       <!-- Page Content -->
       <div id="page-content-wrapper">
       <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <button class="rounded" id="menu-toggle"><span><</span></button>
+      <button class="" id="menu-toggle"><span><</span></button>
       <button></button>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -70,14 +68,10 @@ class BaseController
       </div>
       </div>
 
-      <!-- Bootstrap -->
-      <script src="/js/jquery.min.js" charset="utf-8"></script>
-      <script src="/js/bootstrap.bundle.min.js" charset="utf-8"></script>
-
       <script>
       // Custom validation
-      document.querySelectorAll('input').forEach((function(x){ x.setAttribute("oninvalid","this.setCustomValidity('Este campo é obrigatório')");}))
-      document.querySelectorAll('input').forEach((function(x){ x.setAttribute("oninput","setCustomValidity('')");}))
+      // document.querySelectorAll('input').forEach((function(x){ x.setAttribute("oninvalid","this.setCustomValidity('Este campo é obrigatório')");}))
+      // document.querySelectorAll('input').forEach((function(x){ x.setAttribute("oninput","setCustomValidity('')");}))
 
       // Menu Toggle
       $("#menu-toggle").click(function(e) {
@@ -91,6 +85,26 @@ class BaseController
       </html>
 
       HTML
+    end
+
+    def sidebar_links(user)
+      if user.classificacao == 'Candidato'
+        <<~HTML
+        <div class="list-group list-group-flush">
+          <a href="/aplicacoes/new" class="list-group-item list-group-item-action bg-light">Fazer um teste</a>
+          <a href="/aplicacoes" class="list-group-item list-group-item-action bg-light">Meus resultados</a>
+        </div>
+        HTML
+      else
+        <<~HTML
+        <div class="list-group list-group-flush">
+        <a href="/elaboradores" class="list-group-item list-group-item-action bg-light">Elaboradores</a>
+        <a href="/candidatos" class="list-group-item list-group-item-action bg-light">Candidatos</a>
+        <a href="/testes" class="list-group-item list-group-item-action bg-light">Testes</a>
+        <a href="/aplicacoes" class="list-group-item list-group-item-action bg-light">Aplicações</a>
+        </div>
+        HTML
+      end
     end
 
     def render(template,flash_messages = nil)

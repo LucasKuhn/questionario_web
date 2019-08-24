@@ -6,6 +6,17 @@ class TestesController < BaseController
       render("testes/new.html.erb")
     end
 
+    def create(params)
+      teste = Teste.new(params)
+      if teste.valid?
+        teste.save
+        return [ 302, {'Location' =>"/testes/#{teste.id}"}, [] ]
+      else
+        env['x-rack.flash'].error = teste.errors.full_messages
+        return [ 302, {'Location' =>"/testes/new"}, [] ]
+      end
+    end
+
     def index
       Rack::Response.new(render("testes/index.html.erb"))
     end

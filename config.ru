@@ -2,8 +2,8 @@ require_relative 'application'
 require 'yaml'
 require 'sequel'
 require 'rack-flash'
-require "warden"
 
+# Load DB
 db_config_file = File.join(File.dirname(__FILE__), 'config', 'database.yml')
 if File.exist?(db_config_file)
   config = YAML.load(File.read(db_config_file))
@@ -24,7 +24,7 @@ Dir[File.join(File.dirname(__FILE__), 'models', '**', '*.rb')].sort.each {|file|
 Dir[File.join(File.dirname(__FILE__), 'helpers', '**', '*.rb')].sort.each {|file| require file }
 
 use Rack::Reloader, 0
-use Rack::Static, :urls => ["/css", "/js", "/img"], :root => "public"
+use Rack::Static, :urls => ["/css", "/js", "/img", "/temp"], :root => "public"
 
 use Rack::Session::Cookie, secret: "IdoNotHaveAnySecret"
 use Rack::Flash, accessorize: [:notice, :error, :success]

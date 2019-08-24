@@ -1,18 +1,23 @@
-<div class="d-flex flex-row-reverse mx-4">
-  <a class="btn btn-outline-success" href="/elaboradores/new" role="button">Novo Elaborador</a>
+<div class="d-flex justify-content-between">
+  <div class="m-2"><h3> Elaboradores </h3></div>
+  <div class="m-2"><a class="btn btn-outline-info" href="/elaboradores/new" role="button">Novo Elaborador</a></div>
 </div>
+<hr class="mt-0">
 
-<!-- <nav class="navbar navbar-light bg-light ">
-<div class="flex-nowrap">
-</div>
-<button class="btn btn-outline-success " type="button">Novo Elaborador</button>
-</nav> -->
-
-<table class="table">
+<table class="table table-headless table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Area</th>
+      <th scope="col">Titulação</th>
+    </tr>
+  </thead>
   <tbody>
     <% ElaboradoresController.elaboradores.each do |elaborador| %>
     <tr>
-      <td><%= elaborador.nome %></td>
+      <td><a href="/elaboradores/<%= elaborador.id %>"><%= elaborador.nome %></a></td>
+      <td><%= elaborador.area %></td>
+      <td><%= elaborador.titulacao %></td>
     </tr>
     <% end %>
   </tbody>

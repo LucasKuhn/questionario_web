@@ -37,8 +37,15 @@ class LoginController < BaseController
       render("login/new.html.erb",env['x-rack.flash'].error)
     end
 
-    def login(params)
-      Pessoa.find(usuario:params['usuario'],senha:params['senha'])
+    def login(env,params)
+      user = Pessoa.find(usuario:params['usuario'],senha:params['senha'])
+      if user
+        env['rack.session'][:user_id] = user.id
+        return [ 302, {'Location' =>"/"}, [] ]
+      else
+        env['x-rack.flash'].error = 'Credenciais inválidas'
+        return [ 302, {'Location' =>"/sign_in"}, [] ]
+      end
     end
 
   end

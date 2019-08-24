@@ -12,7 +12,7 @@
     <div class="col-md-6">
       <div class="form-group">
         <label>Ilustração</label>
-        <input type="file" class="form-control-file" name="image_file" required>
+        <input type="file" class="form-control-file" name="image_file">
       </div>
     </div>
   </div>
@@ -23,15 +23,22 @@
 
     <div class="row">
       <div class="col-md-6">
+        <label>Texto</label>
+      </div>
+      <div class="col-md-6">
+        <label>Correta?</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
         <div class="form-group">
-          <label>Texto</label>
           <input type="text" class="form-control" name="alternativas_attributes[]texto" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label>Correta?</label>
-          <input type="checkbox" name="alternativas_attributes[]correta" class="form-control">
+          <input type="checkbox" name="alternativas_attributes[]correta" class="form-control check">
         </div>
       </div>
     </div>
@@ -39,28 +46,27 @@
   </div>
 
 
-  <a href="#" onclick="myFunction()">Adicionar alternativa</a>
+  <a href="#" onclick="adicionarAlternativa()" class="mb-2">+ Adicionar alternativa</a>
 
-  <br>
-  <button type="submit" class="btn btn-primary">Criar</button>
+  <div class="mt-3">
+    <button type="submit" class="btn btn-primary">Criar</button>
+  </div>
 </form>
 
 
 <script>
-  function myFunction() {
+  function adicionarAlternativa() {
     var new_row = document.createElement('div');
     inner_html = `
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Texto</label>
           <input type="text" class="form-control" name="alternativas_attributes[]texto" required>
         </div>
       </div>
       <div class="col-md-6">
         <div class="form-group">
-          <label>Correta?</label>
-          <input type="checkbox" name="alternativas_attributes[]correta" class="form-control">
+          <input type="checkbox" name="alternativas_attributes[]correta" class="form-control check">
         </div>
       </div>
     </div>
@@ -68,5 +74,9 @@
     new_row.innerHTML = inner_html;
 
     document.getElementById("alternativas").append(new_row)
+
+    $('.check').click(function() {
+      $('.check').not(this).prop('checked', false);
+    });
   }
 </script>

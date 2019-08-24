@@ -1,0 +1,26 @@
+<div class="d-flex justify-content-between">
+  <div class="p-2"><h3> Selecione um teste: </h3></div>
+</div>
+<hr class="mt-0">
+
+
+<div class="row">
+  <% AplicacoesController.testes.each do |teste| %>
+  <div class="col-md-6">
+    <div class="card my-3" style="width: 100%;">
+      <div class="card-body">
+        <h5 class="card-title"><%= teste.nome %></h5>
+        <p class="card-text">
+          Questões: <%= teste.questoes.size %><br>
+          Duração: <%= teste.duracao %> min<br>
+          Aprovação: <%= teste.percentual_aprovacao %> %<br>
+        </p>
+        <form method="post" action="/aplicacoes/iniciar" class="inline">
+          <input type="hidden" name="teste" value="<%= teste.id %>">
+          <input type="submit" class="btn btn-info" value="Iniciar">
+        </form>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

@@ -1,19 +1,10 @@
-<style>
-  .table thead th {
-    border: 0;
-  }
-</style>
-
 <div class="d-flex justify-content-between">
-    <div class="p-2"><h3> Candidatos </h3></div>
-    <div class="p-1">
-      <div class="p-2"><a class="btn btn btn-sm btn-outline-success" href="/candidatos/new" role="button">Novo Candidato</a></div>
-    </div>
+  <div class="m-2"><h3> Candidatos </h3></div>
+  <div class="m-2"><a class="btn btn-outline-info" href="/candidatos/new" role="button">Novo Candidato</a></div>
 </div>
 <hr class="mt-0">
 
-
-<table class="table mt-4">
+<table class="table table-headless table-hover">
   <thead>
     <tr>
       <th scope="col">Nome</th>
@@ -23,7 +14,7 @@
   <tbody>
     <% CandidatosController.candidatos.each do |candidato| %>
     <tr>
-      <td><%= candidato.nome %></td>
+      <td><a href="/candidatos/<%= candidato.id %>"><%= candidato.nome %></a></td>
       <td><%= candidato.inscricao %></td>
     </tr>
     <% end %>
