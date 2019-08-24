@@ -70,8 +70,8 @@ class BaseController
 
       <script>
       // Custom validation
-      // document.querySelectorAll('input').forEach((function(x){ x.setAttribute("oninvalid","this.setCustomValidity('Este campo é obrigatório')");}))
-      // document.querySelectorAll('input').forEach((function(x){ x.setAttribute("oninput","setCustomValidity('')");}))
+      document.querySelectorAll('[required]').forEach((function(x){ x.setAttribute("oninvalid","this.setCustomValidity('Este campo é obrigatório')");}))
+      document.querySelectorAll('[required]').forEach((function(x){ x.setAttribute("oninput","setCustomValidity('')");}))
 
       // Menu Toggle
       $("#menu-toggle").click(function(e) {
