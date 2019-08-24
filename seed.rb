@@ -34,14 +34,25 @@ Elaborador.create(
 )
 
 Elaborador.create(
-  nome: "Lucas Kuhn",
-  endereco: "Rua Aldeia",
-  cidade: "Nova Petropolis",
-  usuario: "lucas",
+  nome: "André Adami",
+  endereco: "Rua X",
+  cidade: "Caxias do Sul",
+  usuario: "adami",
   senha: "123",
-  nascimento: "1994-10-21",
-  titulacao: "Graduando",
+  nascimento: "1972-01-01",
+  titulacao: "Pós Doutorado",
   area: "Ciências da Computação",
+)
+
+Candidato.create(
+  nome: "João Teste",
+  endereco: "Rua X",
+  cidade: "Caxias do Sul",
+  usuario: "joao",
+  senha: "123",
+  nascimento: "1972-01-01",
+  titulacao: "Graduando",
+  area: "Biomedicina",
 )
 
 30.times do

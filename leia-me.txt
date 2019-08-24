@@ -1,0 +1,38 @@
+Linguagem: Ruby
+Banco de dados: Postgres
+Servidor Utilizado: Rack
+
+Instruções para rodar localmente:
+
+1. Instale a linguagem ruby (Qualquer versão acima da 2.1) - Cheque a versão rodando `ruby -v`
+Mac: `rvm install ruby-2.6.3`
+Linux: `sudo apt-get install ruby-full`
+
+2. Instale o bundler
+`gem install bundler`
+
+3. Use o bundler para instalar as dependências (listadas em Gemfile)
+`bundle install`
+
+4. Crie o banco de dados
+`createdb questionarios`
+
+5. Cheque se o servidor está rodando
+`rackup`
+
+6. Adicione dados no banco
+Feche o servidor com `ctrl + c`
+Rode o arquivo seed: `ruby seed.rb`
+Inicie o servidor novamente `rackup`
+
+7. Vá para http://localhost:9292.
+Há um usuário adami senha 123 já criado.
+
+8. Para realizar um teste, entre como Candidato:
+Faça logout: http://localhost:9292/sign_out
+Entre como um Candidado (já existe um com usuário joao senha 123)
+Escolha um teste que deseja realizar
+
+PS:
+O aplicativo também está hosteado em:
+https://questionario-web.herokuapp.com/
