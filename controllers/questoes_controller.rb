@@ -55,8 +55,8 @@ class QuestoesController < BaseController
     def prepare_image(questao)
       filename = questao.nome_ilustracao
       file = questao.ilustracao
-      unless File.exist?("./public/img/#{filename}")
-        File.open("./public/img/#{filename}", 'wb') { |new_file| new_file.write(file.to_s) }
+      unless File.exist?("./public/temp/#{filename}")
+        File.open("./public/temp/#{filename}", 'wb') { |new_file| new_file.write(file.to_s) }
       end
     end
 
