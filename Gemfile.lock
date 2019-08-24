@@ -17,8 +17,6 @@ GEM
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     sequel (5.23.0)
-    warden (1.2.8)
-      rack (>= 2.0.6)
 
 PLATFORMS
   ruby
@@ -31,7 +29,6 @@ DEPENDENCIES
   rack-console
   rack-flash3
   sequel
-  warden
 
 BUNDLED WITH
    1.17.2
