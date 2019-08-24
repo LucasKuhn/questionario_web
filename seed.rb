@@ -2,7 +2,11 @@ require 'faker'
 require 'sequel'
 
 # Load DB
-DB = Sequel.connect(adapter: 'postgres', host: 'localhost', database: ENV['DATABASE_URL'] || 'questionarios', user: 'postgres')
+if ENV['RACK_ENV'] == 'production'
+  DB = Sequel.connect(ENV['DATABASE_URL'])
+else
+  DB = Sequel.connect(adapter: 'postgres', host: 'localhost', database: 'questionarios', user: 'postgres')
+end
 Sequel.extension :migration
 
 # Run migrations
