@@ -40,8 +40,14 @@ class Application
       end
     when "/candidatos/new"
       CandidatosController.new
+    when /\/candidatos\/(\d+)\/edit/
+      CandidatosController.edit($1)
     when /\/candidatos\/(\d+)/
-      CandidatosController.show($1)
+      if request.get?
+        CandidatosController.show($1)
+      else
+        CandidatosController.update($1,request.params)
+      end
 
       # Elaboradores
     when "/elaboradores"
@@ -52,8 +58,14 @@ class Application
       end
     when "/elaboradores/new"
       ElaboradoresController.new
+    when /\/elaboradores\/(\d+)\/edit/
+      ElaboradoresController.edit($1)
     when /\/elaboradores\/(\d+)/
-      ElaboradoresController.show($1)
+      if request.get?
+        ElaboradoresController.show($1)
+      else
+        ElaboradoresController.update($1,request.params)
+      end
 
       # Testes
     when "/testes"

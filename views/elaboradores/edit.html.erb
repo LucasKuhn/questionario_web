@@ -1,0 +1,60 @@
+<% elaborador = ElaboradoresController.elaborador %>
+<h3 class="my-4">Editando elaborador <%= elaborador.nome %></h3>
+
+<form action="/elaboradores/<%= elaborador.id %>" method="post">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="nome" value="<%= elaborador.nome %>" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Data de Nascimento</label>
+        <input type="date" class="form-control" name="nascimento" value="<%= elaborador.nascimento %>" required>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Area</label>
+        <input type="text" class="form-control" name="area" value="<%= elaborador.area %>" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Titulação</label>
+        <input type="text" class="form-control" name="titulacao" value="<%= elaborador.titulacao %>" required>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Endereço</label>
+        <input type="text" class="form-control" name="endereco" value="<%= elaborador.endereco %>" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Cidade</label>
+        <input type="text" class="form-control" name="cidade" value="<%= elaborador.cidade %>" required>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label>Usuário</label>
+    <input type="text" class="form-control" name="usuario" value="<%= elaborador.usuario %>" required>
+  </div>
+  <div class="form-group">
+    <label>Senha</label>
+    <input type="password" class="form-control" name="senha" value="<%= elaborador.senha %>" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Atualizar</button>
+</form>

@@ -1,5 +1,6 @@
 <% candidato = CandidatosController.candidato %>
 <h2>Candidato <%= candidato.nome %></h2>
+<a href="/candidatos/<%= candidato.id %>/edit" class="btn btn-sm btn-outline-secondary float-right">Editar</a>
 <h4 class="font-weight-light">Inscrição: <%= candidato.inscricao %></h4>
 <hr class="mt-0">
 

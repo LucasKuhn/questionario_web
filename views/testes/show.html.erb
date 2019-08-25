@@ -19,7 +19,7 @@
   <% teste.questoes.each do |questao| %>
   <tr>
     <td><a href="/questoes/<%= questao.id %>"><%= questao.texto %></a></td>
-    <td><a data-href="/questoes/<%= questao.id %>" onclick="deleteMethod(this);">Delete</a></td>
+    <td><a data-href="/questoes/<%= questao.id %>" class="text-danger" onclick="deleteMethod(this);">Apagar</a></td>
   </tr>
   <% end %>
 </table>

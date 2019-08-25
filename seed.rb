@@ -51,8 +51,7 @@ Candidato.create(
   usuario: "joao",
   senha: "123",
   nascimento: "1972-01-01",
-  titulacao: "Graduando",
-  area: "Biomedicina",
+  inscricao: "123123",
 )
 
 30.times do

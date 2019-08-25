@@ -1,0 +1,47 @@
+<% candidato = CandidatosController.candidato %>
+<h3 class="my-4">Editando candidato <%= candidato.nome %></h3>
+
+<form action="/candidatos/<%= candidato.id %>" method="post">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" class="form-control" name="nome" value="<%= candidato.nome %>" required>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label>Data de Nascimento</label>
+        <input type="date" class="form-control" name="nascimento" value="<%= candidato.nascimento %>" required>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Inscrição</label>
+    <input type="text" class="form-control" name="inscricao" value="<%= candidato.inscricao %>" required>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Endereço</label>
+        <input type="text" class="form-control" name="endereco" value="<%= candidato.endereco %>" required>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Cidade</label>
+        <input type="text" class="form-control" name="cidade" value="<%= candidato.cidade %>" required>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Usuário</label>
+    <input type="text" class="form-control" name="usuario" value="<%= candidato.usuario %>" required>
+  </div>
+  <div class="form-group">
+    <label>Senha</label>
+    <input type="password" class="form-control" name="senha" value="<%= candidato.senha %>" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Atualizar</button>
+</form>

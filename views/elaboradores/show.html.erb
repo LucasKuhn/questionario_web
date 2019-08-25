@@ -1,6 +1,7 @@
 <% elaborador = ElaboradoresController.elaborador %>
 <h2>Elaborador <%= elaborador.nome %></h2>
 <h4 class="font-weight-light">Area: <%= elaborador.area %></h4>
+<a href="/elaboradores/<%= elaborador.id %>/edit" class="btn btn-sm btn-outline-secondary float-right">Editar</a>
 <h4 class="font-weight-light">Titulação: <%= elaborador.titulacao %></h4>
 <hr class="mt-0">
 
