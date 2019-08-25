@@ -2,7 +2,7 @@
 <h2>Aplicacao #<%= aplicacao.id %></h2>
 <h4 class="font-weight-light">
   Candidato: <%= aplicacao.pessoa.nome %><br>
-  Acertos: <%= aplicacao.percentual_acerto %> %<br>
+  Acertos: <%= aplicacao.percentual_acerto.round(2) %> %<br>
   Situação: <%= aplicacao.situacao %>
 </h4>
 <hr class="mt-0">
