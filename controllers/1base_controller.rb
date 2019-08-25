@@ -12,7 +12,7 @@ class BaseController
       <meta name="description" content="Plataforma web de aplicação de testes">
       <meta name="author" content="Lucas Kuhn">
 
-      <title>Plataforma Web</title>
+      <title>Questionário Web</title>
 
       <link href="/css/bootstrap.min.css" rel="stylesheet">
       <link href="/css/sidebar.css" rel="stylesheet">

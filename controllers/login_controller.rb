@@ -7,7 +7,11 @@ class LoginController < BaseController
       <html lang="en" dir="ltr">
       <head>
       <meta charset="utf-8">
-      <title></title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="Plataforma web de aplicação de testes">
+      <meta name="author" content="Lucas Kuhn">
+
+      <title>Questionário Web</title>
       <!-- Bootstrap core CSS -->
       <link href="/css/bootstrap.min.css" rel="stylesheet">
       </head>
