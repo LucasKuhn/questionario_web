@@ -24,14 +24,6 @@ class AplicacaoTeste < Sequel::Model(:aplicacao_testes)
   end
 
   def total_perguntas
-    # Artist.where(id: Album.select(:artist_id))
-    # SELECT * FROM artists WHERE (id IN (
-    #   SELECT artist_id FROM albums))
-
-    # teste.questoes_dataset.where(id:[1,2])
-    # teste.questoes_dataset.exclude(id:[1]).all
-    # teste.questoes.size
-    # teste.questoes_dataset.select(:id)
     teste.questoes.size
   end
 

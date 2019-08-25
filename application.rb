@@ -1,7 +1,3 @@
-require 'erb'
-require 'byebug'
-require 'sequel'
-
 class Application
   def call(env)
 

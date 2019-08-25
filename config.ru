@@ -1,7 +1,8 @@
-require_relative 'application'
-require 'yaml'
 require 'sequel'
 require 'rack-flash'
+require 'erb'
+require 'byebug'
+require_relative 'application'
 
 # Load DB
 if ENV['RACK_ENV'] == 'production'
@@ -28,13 +29,5 @@ use Rack::Static, :urls => ["/css", "/js", "/img", "/temp"], :root => "public"
 
 use Rack::Session::Cookie, secret: "IdoNotHaveAnySecret"
 use Rack::Flash, accessorize: [:notice, :error, :success]
-
-# map '/session' do
-#   run App::Session
-# end
-#
-# map '/' do
-#   run App::Main
-# end
 
 run Application.new

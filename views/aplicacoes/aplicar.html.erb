@@ -119,7 +119,7 @@ function startTimer(duration, display) {
     }, 1000);
 }
 
-var fiveMinutes = <%= aplicacao.seconds_remaining %>,
+var seconds = <%= aplicacao.seconds_remaining %>,
 display = document.querySelector('#time');
-startTimer(fiveMinutes, display);
+startTimer(seconds, display);
 </script>
